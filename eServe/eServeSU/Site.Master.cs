@@ -132,8 +132,8 @@ namespace eServeSU
 
                 hlFaculty.Visible = false;
                 hlFacultyOpp.Visible = false;
-                lblRegister.Visible = true;
-                lblLogOut.Visible = false;
+                //lblRegister.Visible = true; //null ref exception
+                //lblLogOut.Visible = false;
             }
         }
 
