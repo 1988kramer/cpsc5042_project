@@ -6,14 +6,8 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-INSERT INTO [dbo].[FocusArea](
-[AreaName])
+INSERT INTO [dbo].[Student_Ethinicity](
+[StudentID], [EthinicityID])
 VALUES
-('Children and Youth'), 
-('Intercultural Connections'), 
-('Working with Families'), 
-('Hunger and Homelessness'), 
-('Sustainability'),
-('Aging and Disabilities'),
-('Seattle University Youth Initiative')
+(106288, 6)
 GO

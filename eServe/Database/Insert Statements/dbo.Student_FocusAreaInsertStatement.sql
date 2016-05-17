@@ -9,5 +9,5 @@ GO
 INSERT INTO [dbo].[Student_FocusArea](
 [StudentID], [FocusAreaID])
 VALUES
-(12345, 6)
+(106288, 6)
 GO

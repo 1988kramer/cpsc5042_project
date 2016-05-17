@@ -6,26 +6,13 @@ SET ANSI_WARNINGS OFF
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-INSERT INTO [dbo].[Ethnicity](
-StudentID, 
-DateOfBirth, 
-FirstName, 
-LastName, 
-PreferedName,
-EmailID,
-Password,
-Gender,
-InternationalStudent,
-LastBackgroundCheck)
+INSERT INTO [dbo].[Ethnicity]
+([Description])
 VALUES(
-12345,
-'1999-1-10',
-'Hassan',
-'Sajwani',
-'Matt',
-'hassan.m.sajwani@gmail.com',
-'129280Eserve;',
-'male',
-'no',
-'2016-5-16')
+'Hispanic or Latino',
+'American Indian or Alaska Native',
+'Asian',
+'Black or African American',
+'Native Hawaiian or Pacific Islander',
+'White')
 GO
