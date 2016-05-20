@@ -15,7 +15,6 @@ namespace eServeUnitTest
     {
         public TestContext TestContext { get; set; }
         public string ConnectionString = ConfigurationManager.ConnectionStrings["eServeConnection"].ConnectionString;
-
         [TestMethod]
         [TestCategory("Student")]
         [Description("")]

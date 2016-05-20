@@ -12,7 +12,8 @@ namespace eServeUnitTest
     public class CommunityPartnerUnitTest
     {
         public TestContext TestContext { get; set; }
-        public string ConnectionString = ConfigurationManager.ConnectionStrings["eServeConnection"].ConnectionString;
+        public string ConnectionString = "Server=tcp:cs5051-sajwanih.database.windows.net,1433;Database=eServe;User ID=sajwanih@cs5051-sajwanih;Password=129280Eserve;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        // ConfigurationManager.ConnectionStrings["eServeConnection"].ConnectionString;
 
         [TestMethod]
         [TestCategory("CommunityPartner")]
@@ -20,11 +21,11 @@ namespace eServeUnitTest
         public void Test_GetAllCommunityPartner()
         {
             //Initialize SqlQueryHelper object
-            var sqlConnection = new SqlConnection(ConnectionString);
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString);
             sqlConnection.Open();
           
-            var command = new SqlCommand("select count(*) from CommunityPartner");
-            var cpCount = Convert.ToInt32(command.ExecuteScalar());
+            SqlCommand command = new SqlCommand("select count(*) from CommunityPartners", sqlConnection);
+            Int32 cpCount = Convert.ToInt32(command.ExecuteScalar());
 
             //CommunityPartner
             
