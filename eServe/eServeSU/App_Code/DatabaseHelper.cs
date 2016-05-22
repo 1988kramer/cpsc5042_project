@@ -174,12 +174,13 @@ namespace eServeSU
       if (string.IsNullOrEmpty(dbConnection))
         dbConnection = ConfigurationManager.AppSettings["eServeConnection"];
 
-      var connection = new SqlConnection(dbConnection);
+      SqlConnection connection = new SqlConnection(dbConnection);
       connection.Open();
-      var command = new SqlCommand(queryString, connection);
-
+      SqlCommand command = new SqlCommand(queryString, connection);
+      command.CommandType = CommandType.StoredProcedure;
       return command.ExecuteReader();
     }
+
     public SqlDataReader GetQuarter(string queryString)
     {
       if (string.IsNullOrEmpty(dbConnection))
