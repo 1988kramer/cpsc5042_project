@@ -7,3 +7,4 @@ C:\Users\Andrew\Documents\Seattle U\CPSC 5051\cpsc5051_project\eServe\DropDownCh
 C:\Users\Andrew\Documents\Seattle U\CPSC 5051\cpsc5051_project\eServe\DropDownCheckBoxes\bin\Debug\DropDownCheckBoxes.pdb
 C:\Users\Andrew\Documents\Seattle U\CPSC 5051\cpsc5051_project\eServe\DropDownCheckBoxes\obj\Debug\DropDownCheckBoxes.dll
 C:\Users\Andrew\Documents\Seattle U\CPSC 5051\cpsc5051_project\eServe\DropDownCheckBoxes\obj\Debug\DropDownCheckBoxes.pdb
+C:\Users\Andrew\Documents\Seattle U\CPSC 5051\cpsc5051_project\eServe\DropDownCheckBoxes\obj\Debug\DropDownCheckBoxes.csprojResolveAssemblyReference.cache
