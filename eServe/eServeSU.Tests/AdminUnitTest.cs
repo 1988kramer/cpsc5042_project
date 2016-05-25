@@ -25,7 +25,7 @@ namespace eServeUnitTest
             var sqlConnection = new SqlConnection(ConnectionString);
             sqlConnection.Open();
 
-            var command = new SqlCommand("select count(*) from opportunity_section where OpportunityID = 10");
+            var command = new SqlCommand("select count(*) from opportunity_section where OpportunityID = 10", sqlConnection);
             var csCount = Convert.ToInt32(command.ExecuteScalar());
 
             //Opportunity

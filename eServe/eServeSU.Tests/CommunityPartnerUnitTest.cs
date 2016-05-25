@@ -20,11 +20,11 @@ namespace eServeUnitTest
         public void Test_GetAllCommunityPartner()
         {
             //Initialize SqlQueryHelper object
-            var sqlConnection = new SqlConnection(ConnectionString);
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString);
             sqlConnection.Open();
           
-            var command = new SqlCommand("select count(*) from CommunityPartner");
-            var cpCount = Convert.ToInt32(command.ExecuteScalar());
+            SqlCommand command = new SqlCommand("select count(*) from CommunityPartners", sqlConnection);
+            Int32 cpCount = Convert.ToInt32(command.ExecuteScalar());
 
             //CommunityPartner
             
