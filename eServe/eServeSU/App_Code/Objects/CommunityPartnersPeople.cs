@@ -15,6 +15,8 @@ namespace eServeSU
         {
             dbHelper = new DatabaseHelper();
             dbHelper.DbConnection = ConfigurationManager.ConnectionStrings["eServeConnection"].ConnectionString;
+            //total hack
+            cpId = 1;
         }
 
         private int cppId;

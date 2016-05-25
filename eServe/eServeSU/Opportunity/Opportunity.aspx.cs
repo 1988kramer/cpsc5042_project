@@ -99,6 +99,7 @@ namespace eServeSU
         protected void DataBind_CommunityPartnerPeople()
         {
             CommunityPartnersPeople ccp = new CommunityPartnersPeople();
+           
 
             ddlSupervisor.DataSource = ccp.GetAllCommunityPartnerPeople();
             ddlSupervisor.DataTextField = "Supervisor";
