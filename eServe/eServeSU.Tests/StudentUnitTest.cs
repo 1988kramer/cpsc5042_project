@@ -25,8 +25,9 @@ namespace eServeUnitTest
             var sqlConnection = new SqlConnection(ConnectionString);
             sqlConnection.Open();
 
-            var command = new SqlCommand("sselect count(distinct [OpportunityID]) from [dbo].[SignUpFor] where studentid = 106288");
-            var oppRegisteredCount = Convert.ToInt32(command.ExecuteScalar());
+      // var command = new SqlCommand("sselect count(distinct [OpportunityID]) from [dbo].[SignUpFor] where studentid = 106288");
+      var command = new SqlCommand("select count(distinct OpportunityID) from SignUpFor where studentID = 106288");
+      var oppRegisteredCount = Convert.ToInt32(command.ExecuteScalar());
 
             //Opportunity
 
