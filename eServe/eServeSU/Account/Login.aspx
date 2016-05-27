@@ -31,14 +31,14 @@
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
                             <br />
                             <asp:CheckBox ID="chkcommunitypartner" runat="server" />
-                            <asp:Label ID="lblCommunityPartner" runat="server" AssociatedControlID="chkcommunitypartner" Text="CommunityPartner?"></asp:Label>
+                            <asp:Label ID="lblCommunityPartner" runat="server" AssociatedControlID="chkcommunitypartner" Text="Community Partner"></asp:Label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
                                 <asp:CheckBox runat="server" ID="RememberMe" />
-                                <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
+                                <asp:Label runat="server" AssociatedControlID="RememberMe">Remember Me</asp:Label>
                             </div>
                         </div>
                     </div>
