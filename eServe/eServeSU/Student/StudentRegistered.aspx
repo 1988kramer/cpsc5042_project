@@ -47,12 +47,12 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Email ID" SortExpression="Location">
                     <ItemTemplate>
-                        <asp:Label ID="lblSlotsAvailable" runat="server" Text='<%# Bind("EmailId") %>'></asp:Label>
+                        <asp:Label ID="lblEmailId" runat="server" Text='<%# Bind("EmailId") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Status" SortExpression="Location">
                     <ItemTemplate>
-                        <asp:Label ID="lblDistanceFromSU" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
+                        <asp:Label ID="lblStatus" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Hours: Completed/Approved" SortExpression="Location">
