@@ -16,6 +16,8 @@ namespace eServeSU
 
                 if (Session["CPID"] == null)
                 {
+                    //THIS IS HARD-CODED BY ORIGINAL AUTHOR
+                    //
                     Session["CPID"] = 1;
 
                     DataBind();

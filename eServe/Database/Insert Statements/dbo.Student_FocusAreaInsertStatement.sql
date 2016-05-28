@@ -1,0 +1,13 @@
+USE [eServe]
+GO
+/* */
+SET ANSI_NULLS ON
+/*SET ANSI_WARNINGS OFF*/
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+INSERT INTO [dbo].[Student_FocusArea](
+[StudentID], [FocusAreaID])
+VALUES
+(106288, 6)
+GO
