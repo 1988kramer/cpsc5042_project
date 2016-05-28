@@ -1,0 +1,15 @@
+USE [eServe]
+GO
+/* */
+SET ANSI_NULLS ON
+SET ANSI_WARNINGS OFF
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+INSERT INTO [dbo].[Opportunity_Student](
+OpportunityID,
+StudentID)
+VALUES(
+1,
+106288)
+GO
