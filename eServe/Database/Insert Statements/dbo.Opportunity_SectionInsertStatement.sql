@@ -1,0 +1,18 @@
+USE [eServe]
+GO
+/* */
+SET ANSI_NULLS ON
+SET ANSI_WARNINGS OFF
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+INSERT INTO [dbo].[Opportunity_Section]
+(
+OpportunityID,
+SectionID
+)
+VALUES(
+2,
+1
+)
+GO
