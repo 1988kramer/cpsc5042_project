@@ -147,15 +147,16 @@ namespace eServeSU
             {
                 DataRow dr = dt.NewRow();
 
+                dr["OpportunityID"] = result[i].OpportunityID;
                 dr["Quarter"] = result[i].Quarter;
                 dr["Course"] = result[i].Course;
                 dr["Organization"] = result[i].Organization;
                 dr["EmailId"] = result[i].EmailId;
                 dr["Status"] = result[i].Status;
-                dr["Hours Volunteered"] = result[i].HoursVolunteered;
-                dr["Partner Evaluation"] = result[i].ParternEvaluation;
-                dr["Student Evaluation"] = result[i].StudentEvaluation;
-                dr["Student Reflection"] = result[i].StudentReflection;
+                dr["Hours Volunteered"] = result[i].HoursVolunteered; 
+                dr["Partner Evaluation"] = result[i].ParternEvaluation; 
+                dr["Student Evaluation"] = result[i].StudentEvaluation; 
+                dr["Student Reflection"] = result[i].StudentReflection; 
 
                 dt.Rows.Add(dr);
             }
