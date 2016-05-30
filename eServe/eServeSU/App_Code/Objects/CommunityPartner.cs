@@ -18,7 +18,6 @@ namespace eServeSU
       organizationName = string.Empty;
 
       dbHelper = new DatabaseHelper();
-      // dbHelper.DbConnection = "Server=tcp:cs5051-sajwanih.database.windows.net,1433;Database=eServe;User ID=sajwanih@cs5051-sajwanih;Password=129280Eserve;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
       dbHelper.DbConnection = ConfigurationManager.ConnectionStrings["eServeConnection"].ConnectionString;
     }
 

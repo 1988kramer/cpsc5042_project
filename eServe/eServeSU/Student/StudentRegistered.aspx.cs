@@ -12,15 +12,15 @@ namespace eServeSU
     public partial class StudentRegistered : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {            
-            //loadDataTable();
-            //Session["Student_StudentID"] = 106288;
-            DataBind();            
-            //Session["Student_OpportunityIDForSubmittingHours"] = null;
+        {
+            loadDataTable();
+            Session["Student_StudentID"] = 106288;
+            DataBind();
+            Session["Student_OpportunityIDForSubmittingHours"] = null;
         }
-        private void DataBind()
-        {           
-            int studentId = Convert.ToInt32(Session["Student_StudentID"]);            
+        public override void DataBind()
+        {
+            int studentId = Convert.ToInt32(Session["Student_StudentID"]);
             OpportunityRegistered opportunityRegistered = new OpportunityRegistered();
             List<OpportunityRegistered> result = opportunityRegistered.GetOpportunityRegisteredByStudentId(studentId);
             StudentHours studenthours = new StudentHours();
@@ -42,7 +42,7 @@ namespace eServeSU
                         result.Remove(result[i]);
                     }
                 }
-            }            
+            }
 
             if (result.Count == 0)
             {
@@ -70,9 +70,9 @@ namespace eServeSU
 
             Session["Student_SelectedOpportunityID"] = selectedOpportunityID.Text;
             Session["Student_SelectedOpportunityName"] = selectedOpportunityName.Text;
-            Session["Student_SelectedOrganizationName"] = selectedOrganizationName.Text;      
+            Session["Student_SelectedOrganizationName"] = selectedOrganizationName.Text;
             //Response.Write("<script>window.open('RegisteredDetail.aspx','_blank');</script>");
-            Response.Write("<script>window.open('RegisteredDetail.aspx?studentid="+106288+"','_blank');</script>");
+            Response.Write("<script>window.open('RegisteredDetail.aspx?studentid=" + 106288 + "','_blank');</script>");
         }
 
         protected void gvOpportunity_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -114,58 +114,67 @@ namespace eServeSU
             DataBind();
         }
 
-        //private void loadDataTable()
-        //{
-        //    int studentId = 106288;
-            
-        //    OpportunityRegistered opportunityRegistered = new OpportunityRegistered();
+        private void loadDataTable()
+        {
+            int studentId = 106288;
 
-        //    List<OpportunityRegistered> result = opportunityRegistered.GetOpportunityRegisteredByStudentId(studentId);
+            OpportunityRegistered opportunityRegistered = new OpportunityRegistered();
 
-        //    DataColumn academicTerm = new DataColumn("Quarter", Type.GetType("System.String"));
-        //    DataColumn course = new DataColumn("Course", Type.GetType("System.String"));
-        //    DataColumn organization = new DataColumn("Organization", Type.GetType("System.String"));
-        //    DataColumn emailId = new DataColumn("EmailId", Type.GetType("System.String"));
-        //    DataColumn status = new DataColumn("Status", Type.GetType("System.String"));
-        //    DataColumn hoursVolunteered = new DataColumn("Hours Volunteered", Type.GetType("System.String"));
-        //    DataColumn partnerEvaluation = new DataColumn("Partner Evaluation", Type.GetType("System.String"));
-        //    DataColumn studentEvaluation = new DataColumn("Student Evaluation", Type.GetType("System.String"));
-        //    DataColumn studentReflection = new DataColumn("Student Reflection", Type.GetType("System.String"));
+            List<OpportunityRegistered> result = opportunityRegistered.GetOpportunityRegisteredByStudentId(studentId);
 
-        //    DataTable dt = new DataTable();
-        //    dt.Columns.Add(academicTerm);
-        //    dt.Columns.Add(course);
-        //    dt.Columns.Add(organization);
-        //    dt.Columns.Add(emailId);
-        //    dt.Columns.Add(status);
-        //    dt.Columns.Add(hoursVolunteered);
-        //    dt.Columns.Add(partnerEvaluation);
-        //    dt.Columns.Add(studentEvaluation);
-        //    dt.Columns.Add(studentReflection);
+            DataColumn opportunityId = new DataColumn("OpportunityID", Type.GetType("System.Int32")); // added - hassan 5/29
+            DataColumn academicTerm = new DataColumn("Quarter", Type.GetType("System.String"));
+            DataColumn course = new DataColumn("Course", Type.GetType("System.String"));
+            DataColumn organization = new DataColumn("Organization", Type.GetType("System.String"));
+            DataColumn opportunity = new DataColumn("Opportunity", Type.GetType("System.String")); // added - hassan 5/29
+            DataColumn emailId = new DataColumn("EmailId", Type.GetType("System.String"));
+            DataColumn status = new DataColumn("Status", Type.GetType("System.String"));
+            DataColumn hoursVolunteered = new DataColumn("HoursVolunteered", Type.GetType("System.String")); // changed - hassan 5/29
+            DataColumn partnerEvaluation = new DataColumn("PartnerEvaluation", Type.GetType("System.String")); // changed - hassan 5/29
+            DataColumn studentEvaluation = new DataColumn("StudentEvaluation", Type.GetType("System.String")); // changed - hassan 5/29
+            DataColumn studentReflection = new DataColumn("StudentReflection", Type.GetType("System.String")); // changed - hassan 5/29
+            DataColumn studentid = new DataColumn("StudentID", Type.GetType("System.String")); // added - hassan 5/29
 
-        //    for (int i = 0; i < result.Count; i++)
-        //    {
-        //        DataRow dr = dt.NewRow();
+            DataTable dt = new DataTable();
+            dt.Columns.Add(opportunity); // added - hassan, 5/29
+            dt.Columns.Add(academicTerm);
+            dt.Columns.Add(course);
+            dt.Columns.Add(organization);
+            dt.Columns.Add(opportunityId); // added - hassan, 5/29
+            dt.Columns.Add(emailId);
+            dt.Columns.Add(status);
+            dt.Columns.Add(hoursVolunteered);
+            dt.Columns.Add(partnerEvaluation);
+            dt.Columns.Add(studentEvaluation);
+            dt.Columns.Add(studentReflection);
+            dt.Columns.Add(studentid); // added - hassan, 5/29
 
-        //        dr["Quarter"] = result[i].Quarter;
-        //        dr["Course"] = result[i].Course;
-        //        dr["Organization"] = result[i].Organization;
-        //        dr["EmailId"] = result[i].EmailId;
-        //        dr["Status"] = result[i].Status;
-        //        dr["Hours Volunteered"] = result[i].HoursVolunteerd;
-        //        dr["Partner Evaluation"] = result[i].ParternEvaluation;
-        //        dr["Student Evaluation"] = result[i].StudentEvaluation;
-        //        dr["Student Reflection"] = result[i].StudentReflection;
+            for (int i = 0; i < result.Count; i++)
+            {
+                DataRow dr = dt.NewRow();
 
-        //        dt.Rows.Add(dr);
-        //    }
+                dr["OpportunityID"] = result[i].OpportunityID; // added - hassan, 5/29
+                dr["Quarter"] = result[i].Quarter;
+                dr["Course"] = result[i].Course;
+                dr["Organization"] = result[i].Organization;
+                dr["Opportunity"] = result[i].Opportunity;
+                dr["EmailId"] = result[i].EmailId;
+                dr["Status"] = result[i].Status;
+                dr["HoursVolunteered"] = result[i].HoursVolunteered; // changed - hassan 5/29
+                dr["PartnerEvaluation"] = result[i].ParternEvaluation; // changed - hassan 5/29
+                dr["StudentEvaluation"] = result[i].StudentEvaluation; // changed - hassan 5/29
+                dr["StudentReflection"] = result[i].StudentReflection; // changed - hassan 5/29
+                dr["StudentID"] = result[i].StudentId; // added - hassan, 5/29
 
-        //    DataSet ds = new DataSet();
-        //    ds.Tables.Add(dt);
+                dt.Rows.Add(dr);
+            }
 
-        //    GridView1.DataSource = ds.Tables[0];
-        //    GridView1.DataBind();
-        //}
+            DataSet ds = new DataSet();
+            ds.Tables.Add(dt);
+
+            gvOpportunity.DataSource = ds.Tables[0];
+            gvOpportunity.DataBind();
+        }
 
 
     }
