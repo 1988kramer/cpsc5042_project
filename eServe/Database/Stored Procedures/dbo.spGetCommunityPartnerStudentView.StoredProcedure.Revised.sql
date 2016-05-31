@@ -5,11 +5,11 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create procedure [dbo].[spGetCommunityPartnerStudentView]
-As
-Begin
-Set NoCount On
-Select
+CREATE PROCEDURE [dbo].[spGetCommunityPartnerStudentView]
+AS
+BEGIN
+SET NoCount On
+SELECT
 o.OpportunityID,
 o.Name,
 o.CPPID,
@@ -22,31 +22,39 @@ PartnerEvaluation,
 ss.SectionID,
 ss.SectionName,
 p.ProfessorID,
-p.FirstName as ProfessorFirstName,
-p.LastName as ProfessorLastName,
-vt.TotalHours as TotalHoursVolunteered,
+p.EmailID AS ProfessorEmail,
+p.FirstName AS ProfessorFirstName,
+p.LastName AS ProfessorLastName,
+vt.TotalHours AS TotalHoursVolunteered,
 PartnerApprovedHours
-from vwTotalVolunteeredHours vt
-inner join
+
+FROM vwTotalVolunteeredHours vt
+
+INNER JOIN
 SignUpFor
-on vt.OpportunityID = SignUpFor.OpportunityID
+ON vt.OpportunityID = SignUpFor.OpportunityID
+
 and vt.StudentID = SignUpFor.StudentID
-inner join
+INNER JOIN
 Student s
-on SignUpFor.StudentID = s.StudentID
-   
-inner join 
+ON SignUpFor.StudentID = s.StudentID  
+ 
+INNER JOIN 
 Opportunity o
-on SignUpFor.OpportunityID = o.OpportunityID
-inner join
+ON SignUpFor.OpportunityID = o.OpportunityID
+
+INNER JOIN
 Opportunity_Section
-on o.OpportunityID = Opportunity_Section.OpportunityID
-inner join
+ON o.OpportunityID = Opportunity_Section.OpportunityID
+
+INNER JOIN
 Section ss
-on Opportunity_Section.SectionID = ss.SectionID
-inner join
+ON Opportunity_Section.SectionID = ss.SectionID
+
+INNER JOIN
 Professor p
-on ss.ProfessorID = p.ProfessorID
- end
+ON ss.ProfessorID = p.ProfessorID
+
+END
 
 GO
