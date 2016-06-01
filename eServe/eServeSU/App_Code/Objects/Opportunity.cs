@@ -462,7 +462,7 @@ namespace eServeSU
                 opp.Status = reader["Status"].ToString();
                 opp.OpportunityTypeName = reader["OpportunityTypeName"].ToString();
                 opp.SupervisorName = reader["Supervisor"].ToString();
-                opp.SupervisorEmail = "mailto:" + reader["SuperVisorEmail"].ToString();
+                opp.SupervisorEmail = "mailto:" + reader["SupervisorEmail"].ToString();
                 opp.DateApproved = Convert.ToDateTime(reader["DateApproved"]);
                 opp.CoursePanelId = "pnCourse" + opp.OpportunityId;
                 opp.CourseGridViewId = "gvCourse" + opp.OpportunityId;
