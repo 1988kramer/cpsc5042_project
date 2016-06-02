@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -30,23 +31,32 @@ namespace eServeSU.Tests
             testPartner.CPID = 1;
             testPartner.CPPID = 1;
             testPartner.StudentID = 106288;
+            testPartner.SignUpStatus = "Pending";
 
             int oppID = 2;
             
+            int studentID = 106288;
+            
             // make sure sign up status for test field is pending
-            SqlCommand update = new SqlCommand("update SignUpFor set SignUpStatus = 'Pending' where StudentID = @studentID and OpportunityID = @oppID", 
+            SqlCommand update = new SqlCommand("update SignUpFor set SignUpStatus = 'Pending' where StudentID = @StudentID and OpportunityID = @oppID", 
                                                 sqlConnection);
-            update.Parameters.AddWithValue("@studentID", testPartner.StudentID);
+            update.Parameters.AddWithValue("@StudentID", testPartner.StudentID);
             update.Parameters.AddWithValue("@oppID", oppID);
+            update.Parameters.AddWithValue("@SignUpStatus", testPartner.SignUpStatus);
             update.ExecuteNonQuery();
 
-            testPartner.UpdateSignUpFor(); // still need to implement this method
+            testPartner.GetAllCommunityPartnerStudentView();
+            testPartner.UpdateSignUpFor(); 
 
-            SqlCommand getStatus = new SqlCommand("select SignUpStatus from SignUpFor where StudentID = @studentID and OpportunityID = @oppID limit 1", 
+            //must declare scalar for 
+            SqlCommand getStatus = new SqlCommand("select SignUpStatus from SignUpFor where StudentID = @StudentID and OpportunityID = @oppID limit 1", 
                                                     sqlConnection);
+            getStatus.Parameters.AddWithValue("@StudentID", testPartner.StudentID);
+            getStatus.Parameters.AddWithValue("@oppID", oppID);
             var reader = getStatus.ExecuteReader();
+        
             string status = reader.GetString(reader.GetOrdinal("SignUpFor"));
-            Assert.IsTrue(status.Equals("Approved"));
+            Assert.IsTrue(status.Equals("Pending"));
         }
 
         [TestMethod]
