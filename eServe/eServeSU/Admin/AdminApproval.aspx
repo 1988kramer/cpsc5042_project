@@ -99,7 +99,7 @@
         <br />
         <div>
             <div class="col-xs-3">
-                <asp:Label ID="lblRequirementAge" runat="server" Text="Minimul Age: " ></asp:Label></div>
+                <asp:Label ID="lblRequirementAge" runat="server" Text="Age Requirement: " ></asp:Label></div>
             <div class="col-xs-9">
                 <asp:TextBox ID="tbRequirementAge" runat="server" Text=""></asp:TextBox></div>
             </div>
