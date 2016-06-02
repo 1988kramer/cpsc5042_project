@@ -9,7 +9,7 @@ namespace eServeSU
 {
     public partial class CommunityPartnerStudentView : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e) //triggered upon load of page - calls databind
         {
             if (!IsPostBack)
                 DataBind();
@@ -20,8 +20,8 @@ namespace eServeSU
         public void DataBind()
         {
             CommunityPartnerStudentViews Cpsv = new CommunityPartnerStudentViews();
-            List<CommunityPartnerStudentViews> CpsvList = Cpsv.GetAllCommunityPartnerStudentView();
-            if (CpsvList.Count == 0)
+            List<CommunityPartnerStudentViews> CpsvList = Cpsv.GetAllCommunityPartnerStudentView(); //calls sql statement from this class
+            if (CpsvList.Count == 0) //if no rows returned
             {
                 CommunityPartnerStudentViews cpsv = new CommunityPartnerStudentViews();
                 CpsvList.Add(cpsv);
