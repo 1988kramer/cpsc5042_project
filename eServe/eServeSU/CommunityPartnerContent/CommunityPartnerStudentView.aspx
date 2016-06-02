@@ -94,7 +94,13 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="SignUpStatus" SortExpression="SignUpStatus">
                             <ItemTemplate>
-                                <asp:button ID="lblSignUpStatus" runat="server" Text='<%# Bind("SignUpStatus") %>' OnClick="EditSignUpStatus"></asp:button>
+
+                               <asp:DropDownList runat="server" ID="StudentStatusDropDown" OnSelectedIndexChanged ="EditSignUpStatus" AutoPostBack ="True" > 
+                                  <asp:ListItem Text="Approved" Value="Approved" />
+                                  <asp:ListItem Text="Pending" Value="Pending" />
+                                  <asp:ListItem Text="Completed" Value="Completed" />                  
+                               </asp:DropDownList >
+
                             </ItemTemplate>
                             <HeaderStyle Width="100px" />
                             <HeaderTemplate>
