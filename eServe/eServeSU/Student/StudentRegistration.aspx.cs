@@ -78,7 +78,8 @@ namespace eServeSU
             //Bind data to the GridView control.
             DataBind();
         }
-        protected void ViewOpportunityDetails(object sender, EventArgs e)
+        protected void 
+            OpportunityDetails(object sender, EventArgs e)
         {
             //Get the button that raised the event
             LinkButton lnkEditView = (LinkButton)sender;
@@ -91,18 +92,18 @@ namespace eServeSU
             Session["Student_SelectedOpportunityID"] = lblOppId.Text; 
             Response.Write("<script>window.open('RegistrationDetail.aspx','_blank');</script>");
         }
-        //protected void ViewOpportunityDetails(object sender, EventArgs e)
-        //{
+        protected void ViewOpportunityDetails(object sender, EventArgs e)
+        {
         //    //Get the button that raised the event
-        //    LinkButton lnkRegister = (LinkButton)sender;
+            LinkButton lnkRegister = (LinkButton)sender;
         //    //Get the row that contains this button
-        //    GridViewRow gvr = (GridViewRow)lnkRegister.NamingContainer;
-        //    Label lblOppId = (Label)gvr.FindControl("lblOppId");
+            GridViewRow gvr = (GridViewRow)lnkRegister.NamingContainer;
+            Label lblOppId = (Label)gvr.FindControl("lblOppId");
 
-        //    //Session["OppId"] = lblOppId.Text;
-        //    //Session["IsClone"] = true;            
-        //    Session["Student_OpportunityID"] = lblOppId.Text; 
-        //    Response.Write("<script>window.open('Opportunity.aspx','_blank');</script>");
-        //}
+            //Session["OppId"] = lblOppId.Text;
+            //Session["IsClone"] = true;            
+            Session["Student_OpportunityID"] = lblOppId.Text;
+            Response.Write("<script>window.open('Opportunity.aspx','_blank');</script>");
+        }
     }
 }
