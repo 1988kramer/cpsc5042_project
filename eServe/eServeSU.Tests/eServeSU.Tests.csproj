@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="AdminUnitTest.cs" />
     <Compile Include="CommunityPartnerUnitTest.cs" />
+    <Compile Include="NewFeatureUnitTest.cs" />
     <Compile Include="OpportunityUnitTest.cs" />
     <Compile Include="StudentUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
