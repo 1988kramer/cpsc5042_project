@@ -95,11 +95,9 @@
                         <asp:TemplateField HeaderText="SignUpStatus" SortExpression="SignUpStatus">
                             <ItemTemplate>
 
-                               <asp:DropDownList runat="server" ID="StudentStatusDropDown" OnSelectedIndexChanged ="EditSignUpStatus" AutoPostBack ="True" > 
-                                  <asp:ListItem Text="Approved" Value="Approved" />
-                                  <asp:ListItem Text="Pending" Value="Pending" />
-                                  <asp:ListItem Text="Completed" Value="Completed" />                  
-                               </asp:DropDownList >
+                            <ItemTemplate>
+                                <asp:button ID="lblSignUpStatus" runat="server" Text='<%# Bind("SignUpStatus") %>' OnClick="EditSignUpStatus"></asp:button>
+                            </ItemTemplate>
 
                             </ItemTemplate>
                             <HeaderStyle Width="100px" />
