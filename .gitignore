@@ -6,6 +6,9 @@
 *.user
 *.sln.docstates
 
+aspnet-eServe-9d089ed0-de54-425b-83ce-4664e642fbd6.mdf
+aspnet-eServe-9d089ed0-de54-425b-83ce-4664e642fbd6_log.ldf
+
 # Build results
 
 [Dd]ebug/
