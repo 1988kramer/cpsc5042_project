@@ -95,10 +95,10 @@
                         <asp:TemplateField HeaderText="SignUpStatus" SortExpression="SignUpStatus">
                             <ItemTemplate>
 
-                               <asp:DropDownList runat="server" ID="StudentStatusDropDown" OnSelectedIndexChanged ="EditSignUpStatus" AutoPostBack ="True" > 
+                               <asp:DropDownList runat="server" ID="lblSignUpStatus" OnSelectedIndexChanged ="EditSignUpStatus" AutoPostBack ="True" Text='<%# Bind("SignUpStatus") %>' > 
                                   <asp:ListItem Text="Approved" Value="Approved" />
                                   <asp:ListItem Text="Pending" Value="Pending" />
-                                  <asp:ListItem Text="Completed" Value="Completed" />                  
+                                  <asp:ListItem Text="Complete" Value="Complete" />                  
                                </asp:DropDownList >
 
                             </ItemTemplate>

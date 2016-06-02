@@ -9,6 +9,7 @@ namespace eServeSU
 {
     public partial class CommunityPartnerStudentView : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e) //triggered upon load of page - calls databind
         {
             if (!IsPostBack)
@@ -20,7 +21,9 @@ namespace eServeSU
         public void DataBind()
         {
             CommunityPartnerStudentViews Cpsv = new CommunityPartnerStudentViews();
-            List<CommunityPartnerStudentViews> CpsvList = Cpsv.GetAllCommunityPartnerStudentView(); //calls sql statement from this class
+            List<CommunityPartnerStudentViews> CpsvList = Cpsv.GetAllCommunityPartnerStudentView(); //calls sql statements from this class which are returned as list
+
+
             if (CpsvList.Count == 0) //if no rows returned
             {
                 CommunityPartnerStudentViews cpsv = new CommunityPartnerStudentViews();
@@ -43,14 +46,13 @@ namespace eServeSU
              {
                  LinkButton lbtnStudent = (LinkButton)e.Row.FindControl("lbtnStudent");
                  HyperLink  lbtnProfessor = (HyperLink)e.Row.FindControl("lbtnProfessor");
-                 Button lblSignUpStatus = ((Button)e.Row.FindControl("lblSignUpStatus"));
+                 DropDownList lblSignUpStatus = ((DropDownList)e.Row.FindControl("lblSignUpStatus"));
                  TextBox tbSignUpStatus = (TextBox)e.Row.FindControl("tbSignUpStatus");
                  LinkButton lbtnEdit = (LinkButton)e.Row.FindControl("lbtnEdit");
                  LinkButton  lbtnPartnerEval = (LinkButton )e.Row.FindControl("lbtnPartnerEval");
 
 
-
-             }
+            }
 
 
         }

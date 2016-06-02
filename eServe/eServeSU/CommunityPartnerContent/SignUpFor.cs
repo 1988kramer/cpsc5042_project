@@ -47,9 +47,6 @@ namespace eServeSU
             set { signUpStatus  = value; }
         }
 
-        
-
-     
 
         public string StudentReflection
         {
