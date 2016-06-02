@@ -34,7 +34,7 @@ namespace eServeSU.Tests
             int oppID = 2;
             
             // make sure sign up status for test field is pending
-            SqlCommand update = new SqlCommand("update SignUpFor set SignUpStatus = 'pending' where StudentID = @studentID and OpportunityID = @oppID", 
+            SqlCommand update = new SqlCommand("update SignUpFor set SignUpStatus = 'Pending' where StudentID = @studentID and OpportunityID = @oppID", 
                                                 sqlConnection);
             update.Parameters.AddWithValue("@studentID", testPartner.StudentID);
             update.Parameters.AddWithValue("@oppID", oppID);
@@ -129,14 +129,15 @@ namespace eServeSU.Tests
             testPartner.CPID = 1;
             testPartner.CPPID = 1;
             testPartner.StudentID = 106288;
-
+            testPartner.SignUpStatus = "Pending";
             int oppID = 2;
 
             // make sure sign up status for test field is pending
-            SqlCommand update = new SqlCommand("update SignUpFor set SignUpStatus = 'pending' where StudentID = @studentID and OpportunityID = @oppID",
+            SqlCommand update = new SqlCommand("update SignUpFor set SignUpStatus = 'Pending' where StudentID = @studentID and OpportunityID = @oppID",
                                                 sqlConnection);
             update.Parameters.AddWithValue("@studentID", testPartner.StudentID);
             update.Parameters.AddWithValue("@oppID", oppID);
+            update.Parameters.AddWithValue("@SignUpStatus", testPartner.SignUpStatus);
             update.ExecuteNonQuery();
 
             testPartner.UpdateSignUpFor(); // still need to implement this method
@@ -148,7 +149,7 @@ namespace eServeSU.Tests
             foreach (OpportunityRegistered opp in opportunities)
             {
                 if (opp.OpportunityID == oppID)
-                    Assert.IsTrue(opp.Status.Equals("Approved"));
+                    Assert.IsTrue(opp.Status.Equals("Pending"));
             }
         }
 
