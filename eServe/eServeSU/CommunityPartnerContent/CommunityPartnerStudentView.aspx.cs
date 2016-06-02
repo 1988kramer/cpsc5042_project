@@ -98,7 +98,7 @@ namespace eServeSU
         protected void EditSignUpStatus(object sender, EventArgs e)
         {
             //Get the button that raised this event
-            Button lblSignUpStatus = (Button)sender;
+            DropDownList lblSignUpStatus = (DropDownList)sender;
             //Get the row that contains this button
             GridViewRow gvr = (GridViewRow)lblSignUpStatus.NamingContainer;
             
@@ -116,9 +116,9 @@ namespace eServeSU
 
             SignUpFor signUpFor = new SignUpFor();
 
-            if (lblSignUpStatus.Text.Equals("Pending",StringComparison.OrdinalIgnoreCase))
-                lblSignUpStatus.Text = "Approved";
-            else lblSignUpStatus.Text = "Pending";
+            //if (lblSignUpStatus.Text.Equals("Pending",StringComparison.OrdinalIgnoreCase))
+            //    lblSignUpStatus.Text = "Approved";
+            //else lblSignUpStatus.Text = "Pending";
 
             signUpFor.SignUpStatus = lblSignUpStatus.Text;
 
