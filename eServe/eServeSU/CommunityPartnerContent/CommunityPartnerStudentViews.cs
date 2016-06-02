@@ -227,12 +227,12 @@ namespace eServeSU
             
         }
 
-        //public void UpdateSignUpFor()
-        //{
-        //    dbHelper.UpdateSignUpFor(Constant.SP_UpdateSignUpStatus,this.StudentID,this.OpportunityID,this.CPPID,this.SignUpStatus,this.StudentReflection,this.PartnerEvaluation,this.CourseEvaluation)
-        //}
+        public void UpdateSignUpFor()
+        {
+            dbHelper.UpdateSignUpFor(Constant.SP_UpdateSignUpStatus, this.StudentID, this.OpportunityID, this.CPPID, this.SignUpStatus);
+        }
 
-        
+
 
     }
 }

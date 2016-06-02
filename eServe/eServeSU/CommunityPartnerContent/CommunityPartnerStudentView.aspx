@@ -95,7 +95,7 @@
                         <asp:TemplateField HeaderText="SignUpStatus" SortExpression="SignUpStatus">
                             <ItemTemplate>
 
-                               <asp:DropDownList runat="server" ID="StudentStatusDropDown" SelectedIndexChanged ="EditSignUpStatus" AutoPostBack ="True" > 
+                               <asp:DropDownList runat="server" ID="StudentStatusDropDown" OnSelectedIndexChanged ="EditSignUpStatus" AutoPostBack ="True" > 
                                   <asp:ListItem Text="Approved" Value="Approved" />
                                   <asp:ListItem Text="Pending" Value="Pending" />
                                   <asp:ListItem Text="Completed" Value="Completed" />                  
