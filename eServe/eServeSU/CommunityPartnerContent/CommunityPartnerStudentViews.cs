@@ -229,7 +229,7 @@ namespace eServeSU
 
         public void UpdateSignUpFor()
         {
-            dbHelper.UpdateSignUpFor(Constant.SP_UpdateSignUpStatus, this.StudentID, this.OpportunityID, this.CPPID, this.SignUpStatus);
+            dbHelper.UpdateSignUpFor(Constant.SP_UpdateSignUpStatus, this.CPPID, this.StudentID, this.OpportunityID, this.SignUpStatus);
         }
 
 
