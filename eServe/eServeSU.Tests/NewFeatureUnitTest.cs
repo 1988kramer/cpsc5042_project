@@ -59,7 +59,72 @@ namespace eServeSU.Tests
             //string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
             Assert.IsTrue(status.Equals("Accepted"));
         }
+        [TestMethod] //added by Hassan
+        public void Test_GetCommunityPartnerStudentView()
+        {
+            //Initialize SqlQueryHelper object
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString);
+            sqlConnection.Open();
 
+            //declare and initialize a database helper
+            DatabaseHelper dbHelper = new DatabaseHelper();
+            dbHelper.DbConnection = ConfigurationManager.ConnectionStrings["eServeConnection"].ConnectionString;
+
+            //run getallcommunitypartnerstudentview method
+            var reader = dbHelper.GetCommunityPartnerStudentView(Constant.SP_GetCommunityPartnerStudentView);
+
+            //examine results to assure that all columns are returned for row created
+            reader.Read();
+
+            Assert.IsInstanceOfType(Convert.ToInt32(reader["OpportunityID"]), typeof(int));
+            Assert.IsInstanceOfType(Convert.ToInt32(reader["CPPID"]), typeof(int));
+            Assert.IsInstanceOfType(Convert.ToInt32(reader["CPID"]), typeof(int));
+            Assert.IsInstanceOfType(reader["Name"].ToString(), typeof(string));
+            Assert.IsInstanceOfType(Convert.ToInt32(reader["StudentID"]), typeof(int));
+            Assert.IsInstanceOfType(reader["FirstName"].ToString(), typeof(string));
+            Assert.IsInstanceOfType(reader["LastName"].ToString(), typeof(string));
+            Assert.IsInstanceOfType(reader["SignUpStatus"].ToString(), typeof(string));
+            Assert.IsInstanceOfType(Convert.ToInt32(reader["SectionID"]), typeof(int));
+            Assert.IsInstanceOfType(reader["SectionName"].ToString(), typeof(string));
+            Assert.IsInstanceOfType(Convert.ToInt32(reader["ProfessorID"]), typeof(int));
+            Assert.IsInstanceOfType(reader["ProfessorFirstName"].ToString(), typeof(string));
+            Assert.IsInstanceOfType(reader["ProfessorLastName"].ToString(), typeof(string));
+            Assert.IsInstanceOfType(Convert.ToInt32(reader["TotalHoursVolunteered"]), typeof(int));
+            Assert.IsInstanceOfType(Convert.ToInt32(reader["PartnerApprovedHours"]), typeof(int));
+            Assert.IsInstanceOfType(reader["ProfessorEmail"].ToString(), typeof(string));
+        }
+
+        [TestMethod] //added by Hassan
+        public void Test_GetAllCommunityPartnerStudentView()
+        {
+            //Initialize SqlQueryHelper object
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString);
+            sqlConnection.Open();
+
+            //declare and initialize a community partner student view
+            CommunityPartnerStudentViews Cpsv = new CommunityPartnerStudentViews();
+            List<CommunityPartnerStudentViews> CpsvList = Cpsv.GetAllCommunityPartnerStudentView();
+
+            //examine results to assure that all communitypartnerstudentview properties are set
+            Assert.IsNotNull(Cpsv.CPID);
+            Assert.IsNotNull(Cpsv.CPPID);
+            Assert.IsNotNull(Cpsv.FirstName);
+            Assert.IsNotNull(Cpsv.LastName);
+            Assert.IsNotNull(Cpsv.Name);
+            Assert.IsNotNull(Cpsv.OpportunityID);
+            Assert.IsNotNull(Cpsv.PartnerApprovedHours);
+            Assert.IsNotNull(Cpsv.PartnerEvaluation);
+            Assert.IsNotNull(Cpsv.Professor);
+            Assert.IsNotNull(Cpsv.ProfessorEmail);
+            Assert.IsNotNull(Cpsv.ProfessorFirstName);
+            Assert.IsNotNull(Cpsv.ProfessorLastName);
+            Assert.IsNotNull(Cpsv.SectionID);
+            Assert.IsNotNull(Cpsv.SectionName);
+            Assert.IsNotNull(Cpsv.SignUpStatus);
+            Assert.IsNotNull(Cpsv.Student);
+            Assert.IsNotNull(Cpsv.StudentID);
+            Assert.IsNotNull(Cpsv.TotalHoursVolunteered);
+        }
         [TestMethod]
         public void Test_OpportunityViewableByStudent()
         {
