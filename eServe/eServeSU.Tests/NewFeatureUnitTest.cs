@@ -53,12 +53,11 @@ namespace eServeSU.Tests
                                                     sqlConnection);
             getStatus.Parameters.AddWithValue("@StudentID", testPartner.StudentID);
             getStatus.Parameters.AddWithValue("@oppID", oppID);
-            // var reader = getStatus.ExecuteReader();
-            // string status = reader["SignUpStatus"].ToString();
+            //Morgan: changed to scalar because only need 1st row/column
             string status = getStatus.ExecuteScalar().ToString();
-            //string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
             Assert.IsTrue(status.Equals("Accepted"));
         }
+
         [TestMethod] //added by Hassan
         public void Test_GetCommunityPartnerStudentView()
         {
@@ -258,9 +257,9 @@ namespace eServeSU.Tests
       checkStatus.Parameters.AddWithValue("@stuID", studentID);
       checkStatus.Parameters.AddWithValue("@oppID", oppID);
 
-      var reader = checkStatus.ExecuteReader();
-
-      string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
+      //var reader = checkStatus.ExecuteReader();
+            string status = checkStatus.ExecuteScalar().ToString();
+        //string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
       Assert.IsTrue(status.Equals("Pending"));
     }
 
