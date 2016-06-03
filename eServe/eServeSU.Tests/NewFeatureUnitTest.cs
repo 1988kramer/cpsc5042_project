@@ -49,13 +49,13 @@ namespace eServeSU.Tests
             testPartner.UpdateSignUpFor(); 
 
             //must declare scalar for 
-            SqlCommand getStatus = new SqlCommand("select SignUpStatus from SignUpFor where StudentID = @StudentID and OpportunityID = @oppID limit 1", 
+            SqlCommand getStatus = new SqlCommand("select top (1) SignUpStatus from SignUpFor where StudentID = @StudentID and OpportunityID = @oppID ", 
                                                     sqlConnection);
             getStatus.Parameters.AddWithValue("@StudentID", testPartner.StudentID);
             getStatus.Parameters.AddWithValue("@oppID", oppID);
             var reader = getStatus.ExecuteReader();
-        
-            string status = reader.GetString(reader.GetOrdinal("SignUpFor"));
+           // string status = reader["SignUpStatus"].ToString();
+            string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
             Assert.IsTrue(status.Equals("Pending"));
         }
 
