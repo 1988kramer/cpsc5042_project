@@ -31,7 +31,7 @@ namespace eServeSU.Tests
       testPartner.CPID = 1;
       testPartner.CPPID = 1;
       testPartner.StudentID = 106288;
-      testPartner.SignUpStatus = "Accepted";
+      testPartner.SignUpStatus = "Approved";
       testPartner.OpportunityID = 2;
 
       // make sure sign up status for test field is pending
@@ -51,7 +51,7 @@ namespace eServeSU.Tests
       // string status = reader["SignUpStatus"].ToString();
       string status = getStatus.ExecuteScalar().ToString();
       //string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
-      Assert.IsTrue(status.Equals("Accepted"));
+      Assert.IsTrue(status.Equals("Approved"));
     }
 
     [TestMethod]
@@ -138,7 +138,7 @@ namespace eServeSU.Tests
       testPartner.CPID = 1;
       testPartner.CPPID = 1;
       testPartner.StudentID = 106288;
-      testPartner.SignUpStatus = "Accepted";
+      testPartner.SignUpStatus = "Approved";
       testPartner.OpportunityID = 2;
 
       // make sure sign up status for test field is pending
@@ -157,7 +157,7 @@ namespace eServeSU.Tests
       foreach (OpportunityRegistered opp in opportunities)
       {
         if (opp.OpportunityID == testPartner.OpportunityID)
-          Assert.IsTrue(opp.Status.Equals("Accepted"));
+          Assert.IsTrue(opp.Status.Equals("Approved"));
       }
     }
 
