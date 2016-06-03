@@ -191,5 +191,61 @@ namespace eServeSU.Tests
       string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
       Assert.IsTrue(status.Equals("Pending"));
     }
+
+    [TestMethod]
+    public void Test_UpdateSignUpFor()
+    {
+      //Initialize SqlQueryHelper object
+      SqlConnection sqlConnection = new SqlConnection(ConnectionString);
+      sqlConnection.Open();
+
+      SignUpFor signUp = new SignUpFor();
+      signUp.OpportunityID = 4;
+      signUp.StudentID = 106288;
+      signUp.SignUpStatus = "Complete";
+
+      signUp.UpdateSignUpFor();
+
+      SqlCommand getStatus = new SqlCommand("select SignUpStatus from SignUpFor where StudentID = @stuID and OpportunityID = @oppID", sqlConnection);
+      getStatus.Parameters.AddWithValue("@stuID", signUp.StudentID);
+      getStatus.Parameters.AddWithValue("@oppID", signUp.OpportunityID);
+
+      var reader = getStatus.ExecuteReader();
+
+      string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
+      Assert.IsTrue(status.Equals("Complete"));
+    }
+
+    [TestMethod]
+    public void Test_UpdateSignUpForViewableByStudent()
+    {
+      //Initialize SqlQueryHelper object
+      SqlConnection sqlConnection = new SqlConnection(ConnectionString);
+      sqlConnection.Open();
+
+      SignUpFor signUp = new SignUpFor();
+      signUp.OpportunityID = 4;
+      signUp.StudentID = 106288;
+      signUp.SignUpStatus = "Complete";
+
+      // make sure sign up status for test field is pending
+      SqlCommand update = new SqlCommand("update SignUpFor set SignUpStatus = 'Pending' where StudentID = @studentID and OpportunityID = @oppID",
+                                          sqlConnection);
+      update.Parameters.AddWithValue("@studentID", signUp.StudentID);
+      update.Parameters.AddWithValue("@oppID", signUp.OpportunityID);
+      update.ExecuteNonQuery();
+
+      signUp.UpdateSignUpFor();
+
+      OpportunityRegistered opportunity = new OpportunityRegistered();
+      List<OpportunityRegistered> opportunities = opportunity.GetOpportunityRegisteredByStudentId(signUp.StudentID);
+
+      // is a student allowed to sign up for the same opportunity twice? if so this may not work
+      foreach (OpportunityRegistered opp in opportunities)
+      {
+        if (opp.OpportunityID == signUp.OpportunityID)
+          Assert.IsTrue(opp.Status.Equals("Approved"));
+      }
+    }
   }
 }
