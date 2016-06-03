@@ -95,7 +95,8 @@ namespace eServeSU.Tests
 
             bool result = true;
             int i = 0;
-
+            //student is presently signed up for 1 opportunity
+            //
             while (reader.Read() && i < opportunities.Count && result)
             {
                 string signUpStatus = reader.GetString(reader.GetOrdinal("SignUpStatus"));
