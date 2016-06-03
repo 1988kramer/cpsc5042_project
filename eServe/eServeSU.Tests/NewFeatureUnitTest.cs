@@ -30,9 +30,9 @@ namespace eServeSU.Tests
       CommunityPartnerStudentViews testPartner = new CommunityPartnerStudentViews();
       testPartner.CPID = 1;
       testPartner.CPPID = 1;
-      testPartner.StudentID = 106288;
+      testPartner.StudentID = 12345;
       testPartner.SignUpStatus = "Approved";
-      testPartner.OpportunityID = 2;
+      testPartner.OpportunityID = 4;
 
       // make sure sign up status for test field is pending
       SqlCommand update = new SqlCommand("update SignUpFor set SignUpStatus = 'Pending' where StudentID = @StudentID and OpportunityID = @oppID",
@@ -43,13 +43,14 @@ namespace eServeSU.Tests
 
       testPartner.UpdateSignUpFor();
       
-      SqlCommand getStatus = new SqlCommand("select top (1) SignUpStatus from SignUpFor where StudentID = @StudentID and OpportunityID = @oppID ",
+      SqlCommand getStatus = new SqlCommand("select SignUpStatus from SignUpFor where StudentID = @StudentID and OpportunityID = @oppID ",
                                               sqlConnection);
       getStatus.Parameters.AddWithValue("@StudentID", testPartner.StudentID);
       getStatus.Parameters.AddWithValue("@oppID", testPartner.OpportunityID);
-      // var reader = getStatus.ExecuteReader();
-      // string status = reader["SignUpStatus"].ToString();
-      string status = getStatus.ExecuteScalar().ToString();
+      var reader = getStatus.ExecuteReader();
+      reader.Read();
+      string status = reader["SignUpStatus"].ToString();
+      //string status = getStatus.ExecuteScalar().ToString();
       //string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
       Assert.IsTrue(status.Equals("Approved"));
     }
@@ -79,24 +80,29 @@ namespace eServeSU.Tests
       //Initialize SqlQueryHelper object
       SqlConnection sqlConnection = new SqlConnection(ConnectionString);
       sqlConnection.Open();
-
+      
       int studentID = 106288;
       OpportunityRegistered opps = new OpportunityRegistered();
+      //retuns list of opportunities registered and corresponding data by joining several tables
       List<OpportunityRegistered> opportunities = opps.GetOpportunityRegisteredByStudentId(studentID);
-
+      
+      //selects opportunity id and signupstatus
       SqlCommand getSignUpStatus = new SqlCommand("select OpportunityID, SignUpStatus from SignUpFor where StudentID = @studentID", sqlConnection);
       getSignUpStatus.Parameters.AddWithValue("@studentID", studentID);
       var reader = getSignUpStatus.ExecuteReader();
 
       bool result = true;
       int i = 0;
-
+      
+      //read through each row from both query sets
       while (reader.Read() && i < opportunities.Count && result)
       {
+        
         string signUpStatus = reader.GetString(reader.GetOrdinal("SignUpStatus"));
         Int32 oppID = Convert.ToInt32(reader["OpportunityID"]);
-        if (opportunities[i].OpportunityID != oppID || opportunities[i].Status.Equals(signUpStatus))
+        if (opportunities[i].OpportunityID != oppID || !opportunities[i].Status.Equals(signUpStatus))
           result = false;
+        i++;
       }
 
       Assert.IsTrue(result);
@@ -137,9 +143,9 @@ namespace eServeSU.Tests
       CommunityPartnerStudentViews testPartner = new CommunityPartnerStudentViews();
       testPartner.CPID = 1;
       testPartner.CPPID = 1;
-      testPartner.StudentID = 106288;
+      testPartner.StudentID = 12345;
       testPartner.SignUpStatus = "Approved";
-      testPartner.OpportunityID = 2;
+      testPartner.OpportunityID = 4;
 
       // make sure sign up status for test field is pending
       SqlCommand update = new SqlCommand("update SignUpFor set SignUpStatus = 'Pending' where StudentID = @studentID and OpportunityID = @oppID",
@@ -169,7 +175,7 @@ namespace eServeSU.Tests
       sqlConnection.Open();
 
       OpportunityRegistered oppReg = new OpportunityRegistered();
-      int studentID = 106288;
+      int studentID = 12345;
       int oppID = 4;
 
       // remove any entries from signUpFor with similar values
@@ -187,6 +193,7 @@ namespace eServeSU.Tests
       checkStatus.Parameters.AddWithValue("@oppID", oppID);
 
       var reader = checkStatus.ExecuteReader();
+      reader.Read();
 
       string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
       Assert.IsTrue(status.Equals("Pending"));
@@ -267,17 +274,19 @@ namespace eServeSU.Tests
       sqlConnection.Open();
 
       SignUpFor signUp = new SignUpFor();
+      signUp.CPPID = 1;
       signUp.OpportunityID = 4;
-      signUp.StudentID = 106288;
+      signUp.StudentID = 12345;
       signUp.SignUpStatus = "Complete";
 
       signUp.UpdateSignUpFor();
 
-      SqlCommand getStatus = new SqlCommand("select SignUpStatus from SignUpFor where StudentID = @stuID and OpportunityID = @oppID", sqlConnection);
+      SqlCommand getStatus = new SqlCommand("select SignUpStatus from SignUpFor where StudentID = @stuID and OpportunityID = @oppID;", sqlConnection);
       getStatus.Parameters.AddWithValue("@stuID", signUp.StudentID);
       getStatus.Parameters.AddWithValue("@oppID", signUp.OpportunityID);
 
       var reader = getStatus.ExecuteReader();
+      reader.Read();
 
       string status = reader.GetString(reader.GetOrdinal("SignUpStatus"));
       Assert.IsTrue(status.Equals("Complete"));
@@ -292,7 +301,7 @@ namespace eServeSU.Tests
 
       SignUpFor signUp = new SignUpFor();
       signUp.OpportunityID = 4;
-      signUp.StudentID = 106288;
+      signUp.StudentID = 12345;
       signUp.SignUpStatus = "Complete";
 
       // make sure sign up status for test field is pending
